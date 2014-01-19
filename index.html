@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>NextGen Prototypes</title>
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="js/jqeasing.js"></script>
+    <script src="js/sliderbar.js" type="text/javascript"></script>
+    <script src="js/hero.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+    $(function(){
+    	var productsBar = new SliderBar(
+    			'#products_slider', {
+					perpage:5,
+					itemEasing: 'swing',
+					itemSpeed: 400
+				});
+
+        var bubbles = new Hero('#bubbles', {
+
+        });
+    })
+    </script>
+</head>
+<body>
+<div id="bubbles">
+    <ul>
+        <li>
+            <div class="img img1" alt="$11M Saved in operating costs"></div>
+        </li>
+        <li>
+            <div class="img img2" alt="Double practice size with same staff"></div>
+        </li>
+        <li>
+            <div class="img img3" alt="$1M over expected ROI"></div>
+        </li>
+        <li>
+            <div class="img img4" alt="30% more revenue per encounter"></div>
+        </li>
+    </ul>
+    <div class="popup item1">
+        <!-- <h4>Working smarter not harder</h4>
+        <p>Tri-county Eye Physicians & Surgeons, PC.</p>
+        <a href="http://www.google.com" class="button blue">Watch a Demo</a> -->
+        <img src="img/bubbles/talkbox-clicked.png" />
+    </div>
+</div>
+
+
+
+<br/><br/><br/>
+
+<strong>Slider Bar:</strong>
+
+<br/><br/>
+
+<div id="productsBar">
+	<div class="container">
+		<img src="img/miscimg1.jpg" />
+		<div id="products_slider">
+			<ul>
+				<li><a href="#" class="sb1_icon1">1extGen Inpatient Clinicals</a></li>
+				<li><a href="#" class="sb1_icon2">2extGen Inpatient Financials</a></li>
+				<li><a href="#" class="sb1_icon3">3extGen Hospital Scheduling</a></li>
+				<li><a href="#" class="sb1_icon4">4mergency Department Solutions</a></li>
+				<li><a href="#" class="sb1_icon5">5extGen Surgical Management</a></li>
+				<li><a href="#" class="sb1_icon5">6extGen Inpatient Clinicals</a></li>
+				<li><a href="#" class="sb1_icon4">7extGen Inpatient
+				Financials</a></li>
+				<li><a href="#" class="sb1_icon3">8extGen Hospital Scheduling</a></li>
+				<li><a href="#" class="sb1_icon2">9mergency Department Solutions</a></li>
+				<li><a href="#" class="sb1_icon1">10xtGen Surgical Management</a></li>
+				<li><a href="#" class="sb1_icon4">11extGen Inpatient Financials</a></li>
+				<li><a href="#" class="sb1_icon3">12xtGen Hospital Scheduling</a></li>
+				<li><a href="#" class="sb1_icon2">13ergency Department Solutions</a></li>
+				<li><a href="#" class="sb1_icon1">14xtGen Surgical Management</a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<br/><br/>
+
+<div id="digiSquares">
+
+</div>
+
+
+
+
+
+</body>
+</html>

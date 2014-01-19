@@ -1,0 +1,94 @@
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+a { text-decoration: none;}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+
+
+
+body {font-family: arial;}
+strong {font-weight: bold;}
+.container { width: 1000px; margin: 0 auto;}
+
+#productsBar { height: 169px; width: 100%; background: #6b6b6b url(img/background1.jpg) repeat-x top center;}
+#productsBar .container>img { float: left;}
+
+/* for the specific implementation of the Products sliderBar: */
+#products_slider {position: relative; margin-left: 250px; height: 135px;}
+#products_slider .arrow {margin-top: 55px;cursor: pointer;}
+#products_slider .arrow.dir_left {left: 0px;}
+#products_slider .arrow.dir_right {right: 40px;}
+#products_slider ul { margin-left: 30px;width: 650px;}
+
+#products_slider ul li a {display: block; float: left; width: 130px; height: 45px; padding-top: 80px; margin-top: 30px; color: #cbcbcb; font-size: .80em; text-align: center; }
+#products_slider ul li a {background: transparent url(img/product_icon.png) no-repeat top center;}
+#products_slider ul li a.sb1_icon1 {background-image: url(img/product_icon1.png);}
+#products_slider ul li a.sb1_icon2 {background-image: url(img/product_icon2.png);}
+#products_slider ul li a.sb1_icon3 {background-image: url(img/product_icon3.png);}
+#products_slider ul li a.sb1_icon4 {background-image: url(img/product_icon4.png);}
+#products_slider ul li a.sb1_icon5 {background-image: url(img/product_icon5.png);}
+
+
+
+#bubbles { background-color: #79c9fe; height: 600px; padding-top: 40px; width: 100%; overflow: hidden;}
+#bubbles ul { width: 5000px; padding-top: 20px; height: 500px; position: relative;}
+#bubbles ul li { display: block; top: 0px; left: 0px;position: absolute; width: 403px; height: 417px;}
+#bubbles ul li div.img { display: block; cursor: pointer; width: 370px; height: 383px; margin: 17px 16px 17px 16px;}
+#bubbles ul li div.img1 { background-image: url(img/bubbles/bubble1.png); }
+#bubbles ul li div.img2 { background-image: url(img/bubbles/bubble2.png); }
+#bubbles ul li div.img3 { background-image: url(img/bubbles/bubble3.png); }
+#bubbles ul li div.img4 { background-image: url(img/bubbles/bubble4.png); }
+#bubbles ul li.over div.img { margin: 0px; width: 403px; height: 417px;}
+#bubbles ul li.over div.img1 { background-image: url(img/bubbles/bubble1_over.png); }
+#bubbles ul li.over div.img2 { background-image: url(img/bubbles/bubble2_over.png); }
+#bubbles ul li.over div.img3 { background-image: url(img/bubbles/bubble3_over.png); }
+#bubbles ul li.over div.img4 { background-image: url(img/bubbles/bubble4_over.png); }
+
+#bubbles div.popup { width: 545px; height: 563px; position: absolute; top: -570px; left: 50%; margin-left: -273px;}
+
+
