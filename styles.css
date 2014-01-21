@@ -74,7 +74,7 @@ strong {font-weight: bold;}
 #products_slider ul li a.sb1_icon5 {background-image: url(img/product_icon5.png);}
 
 
-
+/* for the bubbles hero feature */
 #bubbles { background-color: #79c9fe; height: 600px; padding-top: 40px; width: 100%; overflow: hidden;}
 #bubbles ul { width: 5000px; padding-top: 20px; height: 500px; position: relative;}
 #bubbles ul li { display: block; top: 0px; left: 0px;position: absolute; width: 403px; height: 417px;}
@@ -84,10 +84,16 @@ strong {font-weight: bold;}
 #bubbles ul li div.img3 { background-image: url(img/bubbles/bubble3.png); }
 #bubbles ul li div.img4 { background-image: url(img/bubbles/bubble4.png); }
 #bubbles ul li.over div.img { margin: 0px; width: 403px; height: 417px;}
+#bubbles ul li.over div.img1 {  }
+#bubbles ul li.over div.img2 {  }
+#bubbles ul li.over div.img3 {  }
+#bubbles ul li.over div.img4 {  }
+/*
 #bubbles ul li.over div.img1 { background-image: url(img/bubbles/bubble1_over.png); }
 #bubbles ul li.over div.img2 { background-image: url(img/bubbles/bubble2_over.png); }
 #bubbles ul li.over div.img3 { background-image: url(img/bubbles/bubble3_over.png); }
 #bubbles ul li.over div.img4 { background-image: url(img/bubbles/bubble4_over.png); }
+*/
 
 #bubbles div.popup { width: 545px; height: 563px; position: absolute; top: -570px; left: 50%; margin-left: -273px;}
 
