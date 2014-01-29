@@ -28,9 +28,8 @@
                     setTimeout(function() {
                         $('#slide2').fadeOut(fade/2, function() {
                             $('#slides').hide();
-                            var bubbles = new Hero('#bubbles', function(){
-                                $('#bubbles').fadeIn(fade);
-                            });
+                            $('#bubbles').show();
+                            var bubbles = new Hero('#bubbles');
                         });
                     }, pause);
                 });
@@ -66,23 +65,74 @@
         </li>
     </ul>
     <div class="popup item1">
-        <!-- This can be HTML or whatever you want.  Just ensure that the
-        dimensions are set correctly via the stylesheet.  Also note that
-        height of the popup must be set as a negative value in the script. -->
-        <a href="#" class="close">Close [X]</a><br/>
-        <img src="img/bubbles/talkbox-clicked.png" />
+        <div class="sharepane">
+            <ul>
+                <li><a href="#">Share</a></li>
+                <li><a href="#">Info</a></li>
+                <li><a href="#">Seller</a></li>
+            </ul>
+        </div>
+        <a href="#" class="share">=</a>
+        <a href="#" class="close">x</a>
+        <div class="popcontent">
+            <!-- begin content -->
+            <!-- This can be HTML or whatever you want.  Just ensure that the
+            dimensions are set correctly via the stylesheet.  Also note that
+            height of the popup must be set as a negative value in the script. -->
+            <div style='padding: 20px; color: #ffffff;'>
+                <br/><br/><br/>
+                [logo image]
+                <br/><br/>
+                <span style='font-size: 3em;'>Warking smarter<br/>not harder</span>
+                <br/><br/><br/>
+                <span style='font-size: 1.5em;'>Tri-County Eye Physicians<br/>& Surgeons, PC.</span>
+                <br/><br/><br/>
+                [Button Whatevs]
+            </div>
+            <!-- end content -->
+        </div>
     </div>
     <div class="popup item2">
-        <a href="#" class="close">Close [X]</a><br/>
-        <img src="img/bubbles/talkbox-clicked.png" />
+        <div class="sharepane">
+            <ul>
+                <li><a href="#">Share</a></li>
+                <li><a href="#">Info</a></li>
+                <li><a href="#">Seller</a></li>
+            </ul>
+        </div>
+        <a href="#" class="share">=</a>
+        <a href="#" class="close">x</a>
+        <div class="popcontent">
+            Content should go in here!
+        </div>
     </div>
     <div class="popup item3">
-        <a href="#" class="close">Close [X]</a><br/>
-        <img src="img/bubbles/talkbox-clicked.png" />
+        <div class="sharepane">
+            <ul>
+                <li><a href="#">Share</a></li>
+                <li><a href="#">Info</a></li>
+                <li><a href="#">Seller</a></li>
+            </ul>
+        </div>
+        <a href="#" class="share">=</a>
+        <a href="#" class="close">x</a>
+        <div class="popcontent">
+            Content should go in here!
+        </div>
     </div>
     <div class="popup item4">
-        <a href="#" class="close">Close [X]</a><br/>
-        <img src="img/bubbles/talkbox-clicked.png" />
+        <div class="sharepane">
+            <ul>
+                <li><a href="#">Share</a></li>
+                <li><a href="#">Info</a></li>
+                <li><a href="#">Seller</a></li>
+            </ul>
+        </div>
+        <a href="#" class="share">=</a>
+        <a href="#" class="close">x</a>
+        <div class="popcontent">
+            Content should go in here!
+        </div>
     </div>
 </div>
 
