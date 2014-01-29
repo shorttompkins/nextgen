@@ -17,32 +17,71 @@
 					itemSpeed: 400
 				});
 
-        var bubbles = new Hero('#bubbles', {
+        // boot up the intro sequence:
+        var fade = 1000,
+            pause = 3000
 
+        $('#slide1').fadeIn(fade, function() {
+            setTimeout(function() {
+                $('#slide1').fadeOut(fade/2);
+                $('#slide2').fadeIn(fade, function() {
+                    setTimeout(function() {
+                        $('#slide2').fadeOut(fade/2, function() {
+                            $('#slides').hide();
+                            var bubbles = new Hero('#bubbles', function(){
+                                $('#bubbles').fadeIn(fade);
+                            });
+                        });
+                    }, pause);
+                });
+            }, pause);
         });
-    })
+    });
     </script>
 </head>
 <body>
-<div id="bubbles">
+<div id="slides">
+    <div id="slide1" class="slide hidden">
+        <h2>Imagine Your World</h2>
+
+    </div>
+    <div id="slide2" class="slide hidden">
+        <h2>With numbers like these</h2>
+
+    </div>
+</div>
+<div id="bubbles" style="display: none;">
     <ul>
         <li>
-            <div class="img img1" alt="$11M Saved in operating costs"></div>
+            <img class="img" data-item="1" src="img/bubbles/bubble1.png" alt="$11M Saved in operating costs" />
         </li>
         <li>
-            <div class="img img2" alt="Double practice size with same staff"></div>
+            <img class="img" data-item="2" src="img/bubbles/bubble2.png" alt="Double practice size with same staff" />
         </li>
         <li>
-            <div class="img img3" alt="$1M over expected ROI"></div>
+            <img class="img" data-item="3" src="img/bubbles/bubble3.png" alt="$1M over expected ROI" />
         </li>
         <li>
-            <div class="img img4" alt="30% more revenue per encounter"></div>
+            <img class="img" data-item="4" src="img/bubbles/bubble4.png" alt="30% more revenue per encounter" />
         </li>
     </ul>
     <div class="popup item1">
-        <!-- <h4>Working smarter not harder</h4>
-        <p>Tri-county Eye Physicians & Surgeons, PC.</p>
-        <a href="http://www.google.com" class="button blue">Watch a Demo</a> -->
+        <!-- This can be HTML or whatever you want.  Just ensure that the
+        dimensions are set correctly via the stylesheet.  Also note that
+        height of the popup must be set as a negative value in the script. -->
+        <a href="#" class="close">Close [X]</a><br/>
+        <img src="img/bubbles/talkbox-clicked.png" />
+    </div>
+    <div class="popup item2">
+        <a href="#" class="close">Close [X]</a><br/>
+        <img src="img/bubbles/talkbox-clicked.png" />
+    </div>
+    <div class="popup item3">
+        <a href="#" class="close">Close [X]</a><br/>
+        <img src="img/bubbles/talkbox-clicked.png" />
+    </div>
+    <div class="popup item4">
+        <a href="#" class="close">Close [X]</a><br/>
         <img src="img/bubbles/talkbox-clicked.png" />
     </div>
 </div>

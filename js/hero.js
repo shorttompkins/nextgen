@@ -5,13 +5,15 @@
  * If mouse scrolls left/right of middle, direction changes accordingly.
  * params: selector (CSS selector for the containing div)
  */
-var Hero = function(selector) {
+var Hero = function(selector, callback) {
     var _this = this;
 
     _this.currentX = -99;
     _this.currentY = -99;
     _this.stopped = false;
     _this.lastPopup = {};
+    _this.lastBubble = null;
+    _this.PopupHeight = '-590px';
 
     // defaults:
     var $container = $(selector + ' ul'),
@@ -33,42 +35,78 @@ var Hero = function(selector) {
         itemsPerScreen: itemsPerScreen,
         screenOffset: screenOffset};
 
+    // show the popup on click
+    var showPopup = function(el) {
+        el.animate({
+            top: '20px'
+        }, 800, 'easeOutBack');
+    };
 
+    var hidePopup = function(el) {
+        _this.stopped = false;
+        el.animate({
+            top: _this.PopupHeight
+        }, 600, 'easeInBack', function() {
+            $container.animate({'opacity': '1.0'});
+            main();
+        });
+    };
+
+    // click handler to stop/restart scrolling animation
     $(selector + ' ul').on('click', 'li', function(e){
         if (_this.stopped) {
-            _this.stopped = false;
-            _this.lastPopup.animate({
-                top: '-570px'
-            }, 600, 'easeInBack', function() {
-                $container.animate({'opacity': '1.0'});
-                main();
-            });
+            hidePopup(_this.lastPopup);
         } else {
+            var item = ($(this).attr('class').replace('over','').replace('item','') * 1) + 1;
             clearInterval(_this.loop);
             _this.stopped = true;
             $container.animate({'opacity': '0.25'});
-            _this.lastPopup = $(selector + ' div.popup.' + $(this).attr('class').replace('over',''));
-            _this.lastPopup.animate({
-                top: '20px'
-            }, 800, 'easeOutBack');
+            _this.lastPopup = $(selector + ' div.popup.item' + item);
+            showPopup(_this.lastPopup);
         }
     });
-    $(selector + ' ul').on('mouseover', 'li', function(e){
-        if (!_this.stopped) {
-            $(this).addClass('over');
-        }
+
+    $(selector + ' div.popup .close').on('click', function(e){
+        e.preventDefault();
+        hidePopup($(this).parents('div.popup'));
     });
-    $(selector + ' ul').on('mouseout', 'li', function(e){
-        if (!_this.stopped) {
-            $(this).removeClass('over');
-            _this.currentX = -99;
-            _this.currentY = -99;
+
+    var animateOver = function(el) {
+        if (_this.lastBubble) {
+            animateOut(_this.lastBubble);
         }
-    });
+        el.stop().animate({
+            margin: '0px', width: '403px', height: '417px'
+        }, 200, 'swing');
+        _this.lastBubble = el;
+    };
+    var animateOut = function(el) {
+        el.stop().animate({
+            width: '370px', height: '383px', margin: '17px'
+        }, 200, 'swing');
+    };
+    var applyHovers = function() {
+        $(selector + ' ul li').on('mouseover', 'img', function(e){
+            e.stopPropagation();
+            if (!_this.stopped) {
+                animateOver($(this));
+            }
+        });
+        $(selector + ' ul li').on('mouseout', 'img', function(e){
+            e.stopPropagation();
+            if (!_this.stopped) {
+                animateOut($(this));
+                _this.currentX = -99;
+                _this.currentY = -99;
+            }
+        });
+    }
+    applyHovers();
 
     // refresh cached list of items and reset UI events
     var refresh = function() {
         $items = $(selector + ' ul li');
+        applyHovers();
     };
 
     // make sure there are enough to fill the loop - if not double the initial
@@ -87,8 +125,11 @@ var Hero = function(selector) {
         var i = index;
         if (index > totalItems-1)
             i = index - totalItems;
-        $item.css({'left':index*itemWidth}).addClass('item' + i);
+        $item.css({'left':(index*itemWidth)}).addClass('item' + i);
     });
+
+    if (callback)
+        callback();
 
     $container.on('mousemove', function(e) {
         direction = e.clientX < midpoint ? -1 : 1;
@@ -120,12 +161,13 @@ var Hero = function(selector) {
 
                 // move the item (correct direction)
                 $(item).css({'left': $(item).position().left + (direction * speed) + 'px'});
+
+                // make sure to animate hover on an idle mouse
                 if (_this.currentX >= $(item).position().left &&
                     _this.currentX <= $(item).position().left + itemWidth &&
                     _this.currentY >= $(item).position().top &&
                     _this.currentY <= $(item).position().top + $(item).height()) {
-                    $items.removeClass('over');
-                    $(item).addClass('over');
+                    animateOver($(item).children('img'));
                 }
 
                 // check if we loop back around the item
