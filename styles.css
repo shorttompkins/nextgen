@@ -75,14 +75,25 @@ strong {font-weight: bold;}
 
 
 /* for the slides that play in/out before the bubbles */
-#slides { background-color: #ffffff; height: 600px; padding-top: 140px; width: 100%; }
-#slides .slide { text-align: center; position: absolute;}
+#slides { background-color: #ffffff; height: 500px; padding-top: 140px; width: 100%; }
+#slides .slide { text-align: center; position: absolute; width: 100%;}
 #slides .slide h2 { text-align: center; font-size: 6em; color: #79c9fe; text-shadow: 1px 1px #000000;}
 /* for the bubbles hero feature */
 #bubbles { background-color: #ffffff; height: 600px; padding-top: 40px; width: 100%; overflow: hidden;}
-#bubbles ul { width: 5000px; padding-top: 20px; height: 500px; position: relative;}
-#bubbles ul li { display: block; top: 0px; left: 0px;position: absolute; width: 403px; height: 417px;}
-#bubbles ul li .img { display: block; cursor: pointer; width: 370px; height: 383px; margin: 17px;}
-#bubbles div.popup { width: 545px; height: 583px; position: absolute; top: -590px; left: 50%; margin-left: -273px;}
-
-
+#bubbles > ul { width: 5000px; padding-top: 20px; height: 500px; position: relative;}
+#bubbles > ul li { display: block; top: 0px; left: 0px;position: absolute; width: 403px; height: 417px;}
+#bubbles > ul li .img { display: block; cursor: pointer; width: 370px; height: 383px; margin: 17px;}
+#bubbles div.popup { z-index: 0; width: 545px; height: 583px; position: absolute; top: -590px; left: 50%; margin-left: -273px;}
+#bubbles div.popup .share, #bubbles div.popup .close { border-radius: 4px; display: block; width: 32px; height: 32px; text-indent: -9999px; background: transparent url() no-repeat top left;}
+#bubbles div.popup .share { margin-top: 10px; margin-left: 10px; float: left; background-image: url(img/bubbles/share_icon.jpg); }
+#bubbles div.popup .close { margin-top: 10px; margin-right: 10px; float: right; background-image: url(img/bubbles/close_icon.jpg); }
+#bubbles div.popup .popcontent { width: 545px; height: 583px; z-index: 0; }
+#bubbles div.popup.item1 .popcontent { background: transparent url(img/bubbles/bubble1_large.png) no-repeat top center; }
+#bubbles div.popup.item2 .popcontent { background: transparent url(img/bubbles/bubble2_large.png) no-repeat top center; }
+#bubbles div.popup.item3 .popcontent { background: transparent url(img/bubbles/bubble3_large.png) no-repeat top center; }
+#bubbles div.popup.item4 .popcontent { background: transparent url(img/bubbles/bubble4_large.png) no-repeat top center; }
+#bubbles div.popup div.sharepane { z-index: -1; background-color: #4f4f4f; width: 80px; position: absolute; left: 0px; height: 300px; top: 20px; border-top-left-radius: 6px; border-bottom-left-radius: 6px; }
+#bubbles div.popup div.sharepane ul li { text-align: center; padding: 10px; border-bottom: solid 1px #434343; border-top: solid 1px #5a5a5a;}
+#bubbles div.popup div.sharepane ul li:hover { background-color: #5a5a5a; border-top-left-radius: 6px; }
+#bubbles div.popup div.sharepane ul li:first-child { border-top: none;}
+#bubbles div.popup div.sharepane ul li a { color: #ffffff; font-weight: bold; font-size: .80em;}

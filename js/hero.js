@@ -16,10 +16,11 @@ var Hero = function(selector, callback) {
     _this.PopupHeight = '-590px';
 
     // defaults:
-    var $container = $(selector + ' ul'),
+    var $container = $(selector + ' > ul'),
         screenWidth = $(selector).width(),
-        itemWidth = $(selector + ' ul li:first-child').width(),
-        $items = $(selector + ' ul li'),
+        itemWidth = $(selector + ' > ul li:first-child').width(),
+        itemHeight = $(selector + ' > ul li:first-child').height(),
+        $items = $(selector + ' > ul li'),
         totalItems = $items.length,
         itemsPerScreen = parseInt(screenWidth / itemWidth)+1,
         screenOffset = (screenWidth - (itemsPerScreen*itemWidth))*-1,
@@ -53,7 +54,7 @@ var Hero = function(selector, callback) {
     };
 
     // click handler to stop/restart scrolling animation
-    $(selector + ' ul').on('click', 'li', function(e){
+    $(selector + ' > ul').on('click', 'li', function(e){
         if (_this.stopped) {
             hidePopup(_this.lastPopup);
         } else {
@@ -70,6 +71,13 @@ var Hero = function(selector, callback) {
         e.preventDefault();
         hidePopup($(this).parents('div.popup'));
     });
+    $(selector + ' .popup .share').on('click', function(e) {
+        if ($(this).parent().find('.sharepane').position().left === 0) {
+            $(this).parent().find('.sharepane').animate({'left': '-80px'}, 500, 'easeOutQuad');
+        } else {
+            $(this).parent().find('.sharepane').animate({'left': '0px'}, 500, 'easeOutQuad')
+        }
+    });
 
     var animateOver = function(el) {
         if (_this.lastBubble) {
@@ -77,22 +85,22 @@ var Hero = function(selector, callback) {
         }
         el.stop().animate({
             margin: '0px', width: '403px', height: '417px'
-        }, 200, 'swing');
+        }, 100, 'swing');
         _this.lastBubble = el;
     };
     var animateOut = function(el) {
         el.stop().animate({
             width: '370px', height: '383px', margin: '17px'
-        }, 200, 'swing');
+        }, 100, 'swing');
     };
     var applyHovers = function() {
-        $(selector + ' ul li').on('mouseover', 'img', function(e){
+        $(selector + ' > ul li').on('mouseover', 'img', function(e){
             e.stopPropagation();
             if (!_this.stopped) {
                 animateOver($(this));
             }
         });
-        $(selector + ' ul li').on('mouseout', 'img', function(e){
+        $(selector + ' > ul li').on('mouseout', 'img', function(e){
             e.stopPropagation();
             if (!_this.stopped) {
                 animateOut($(this));
@@ -105,7 +113,7 @@ var Hero = function(selector, callback) {
 
     // refresh cached list of items and reset UI events
     var refresh = function() {
-        $items = $(selector + ' ul li');
+        $items = $(selector + ' > ul li');
         applyHovers();
     };
 
@@ -119,18 +127,6 @@ var Hero = function(selector, callback) {
         refresh();
     }
 
-    // set initial positions:
-    $items.each(function(index, item) {
-        var $item = $(item);
-        var i = index;
-        if (index > totalItems-1)
-            i = index - totalItems;
-        $item.css({'left':(index*itemWidth)}).addClass('item' + i);
-    });
-
-    if (callback)
-        callback();
-
     $container.on('mousemove', function(e) {
         direction = e.clientX < midpoint ? -1 : 1;
         _this.currentX = e.clientX;
@@ -143,9 +139,6 @@ var Hero = function(selector, callback) {
      * If the right most item is about to be fully on screen,
      * duplicate the first item and append after the last.
      * If the left most item is about to be fully off screen, remove it.
-     *
-     * A bug exists where if there is only 1 > itemsPerScreen, the first item
-     * will duplicate. To fix, have total items >= itemsPerScreen + 2 ;)
     */
     var main = function() {
         refresh();
@@ -194,6 +187,30 @@ var Hero = function(selector, callback) {
         }, 15);
     };
 
-    // start the main loop
-    main();
+    // set initial positions:
+    $items.each(function(index, item) {
+        var $item = $(item);
+        var i = index;
+        if (index > totalItems-1)
+            i = index - totalItems;
+        $item.css({'left':(index*itemWidth), 'top': '-' + itemHeight + 'px'}).addClass('item' + i);
+    });
+
+    if (callback)
+        callback();
+
+    // drop them in before starting the main animation
+    var dropIt = function(n) {
+        $($items[n]).animate({ 'top' : '0px'}, 800, 'easeOutBack');
+        if (n < $items.length-1) {
+            setTimeout(function() {
+                dropIt(n+1);
+            }, 300);
+        } else {
+            // start the main loop
+            main();
+        }
+    }
+
+    dropIt(0);
 };
