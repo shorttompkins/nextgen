@@ -21,12 +21,14 @@
         var fade = 1000,
             pause = 3000
 
+        // animate in the text transitions
         $('#slide1').fadeIn(fade, function() {
             setTimeout(function() {
                 $('#slide1').fadeOut(fade/2);
                 $('#slide2').fadeIn(fade, function() {
                     setTimeout(function() {
                         $('#slide2').fadeOut(fade/2, function() {
+                            // hide the text box and start the bubbles feature:
                             $('#slides').hide();
                             $('#bubbles').show();
                             var bubbles = new Hero('#bubbles');
