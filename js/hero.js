@@ -48,6 +48,9 @@ var Hero = function(selector, callback) {
         el.animate({
             top: _this.PopupHeight
         }, 600, 'easeInBack', function() {
+            // hide share pane automatically on close of popup
+            el.parent().find('.sharepane').css('left', '0px');
+            // fade back in the list of bubbles
             $container.animate({'opacity': '1.0'});
             main();
         });
@@ -128,7 +131,9 @@ var Hero = function(selector, callback) {
     }
 
     $container.on('mousemove', function(e) {
-        direction = e.clientX < midpoint ? -1 : 1;
+        // flip 1 : -1 to reverse scroll direction based on mouse location
+        // current implementation is more "touch like" (opposite scroll)
+        direction = e.clientX < midpoint ? 1 : -1;
         _this.currentX = e.clientX;
         _this.currentY = e.clientY;
     });
@@ -193,7 +198,7 @@ var Hero = function(selector, callback) {
         var i = index;
         if (index > totalItems-1)
             i = index - totalItems;
-        $item.css({'left':(index*itemWidth), 'top': '-' + itemHeight + 'px'}).addClass('item' + i);
+        $item.css({'left':(index*itemWidth), 'top': '-' + (itemHeight+20) + 'px'}).addClass('item' + i);
     });
 
     if (callback)
@@ -202,7 +207,7 @@ var Hero = function(selector, callback) {
     // drop them in before starting the main animation
     var dropIt = function(n) {
         $($items[n]).animate({ 'top' : '0px'}, 800, 'easeOutBack');
-        if (n < $items.length-1) {
+        if (n < $items.length) {
             setTimeout(function() {
                 dropIt(n+1);
             }, 300);
